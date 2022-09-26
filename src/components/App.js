@@ -32,7 +32,6 @@ export default function App() {
     }
 
     function chooseLetter(chosenLetter) {
-        console.log(wordArray);
         if (!clickedLetter.includes(chosenLetter)) {
             const addLetter = [...clickedLetter, chosenLetter];
             setClickedLetter(addLetter);
