@@ -9,6 +9,8 @@ export default function App() {
     const [error, setError] = useState(0);
     const [clickedLetter, setClickedLetter] = useState([]);
     const [input, setInput] = useState("");
+    const [gameWon, setGameWon] = useState(false);
+    const [gameLost, setGameLost] = useState(false);
 
 
     useEffect(() => {
@@ -24,45 +26,71 @@ export default function App() {
 
     function startGame() {
         setPlaying(true);
+        setGameLost(false);
+        setGameWon(false);
     }
 
     function chooseLetter(chosenLetter) {
+        console.log(wordArray);
         if (!clickedLetter.includes(chosenLetter)) {
-            setClickedLetter([...clickedLetter, chosenLetter]);
+            const addLetter = [...clickedLetter, chosenLetter];
+            setClickedLetter(addLetter);
 
-            if (!wordArray.includes(chosenLetter)) {
-                if (error < 6) {
+            if (wordArray.every((e) => addLetter.includes(e))) {
+                setGameWon(true);
+                setPlaying(false);
+                setClickedLetter([]);
+            }
+        }
+        if (!wordArray.includes(chosenLetter)) {
+            if (error < 6) {
                 setError(error + 1);
                 if (error === 5) {
+                    setGameLost(true);
                     setPlaying(false);
+                    setClickedLetter([]);
                 }
             }
-            } 
         }
     }
 
     function verifyWord(word) {
-        let tempword = ""
-        for(let i = 0; i < wordArray.length; i++) {
-            tempword += wordArray[i];
+        let tempWord = ""
+        for (let i = 0; i < wordArray.length; i++) {
+            tempWord += wordArray[i];
         }
 
-        if(word === tempword){
-            alert("Parabéns você ganhou!!");
+        if (word === tempWord) {
+            setGameWon(true);
+            setPlaying(false);
+            setClickedLetter([]);
         } else {
             setError(6);
+            setGameLost(true);
             setPlaying(false);
+            setClickedLetter([]);
         }
     }
+
+    function showLetter(letter){
+        if(gameLost) {
+            return letter
+        }else if (clickedLetter.includes(letter)) {
+            return letter
+        }else {
+            return "_ "
+        }
+    }
+
     return (
         <div className="content">
             <div className="interface">
                 <img src={`../../assets/forca${error}.png`} alt="Forca" />
                 <div className="flex">
-                    <button onClick={startGame}>Escolher Palavra</button>
+                    <button onClick={startGame}>{gameWon ? "Começar" : gameLost ? "Começar" : "Escolher Palavra"}</button>
                     {wordArray
                         ?
-                        <p>{wordArray.map((w) => clickedLetter.includes(w) ? w : "_ ")}</p>
+                        <p className={gameWon ? "won" : gameLost ? "lost" : ""}>{wordArray.map((w) => showLetter(w))}</p>
                         : ""
                     }
                 </div>
