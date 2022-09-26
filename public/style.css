@@ -1,0 +1,96 @@
+.interface {
+    margin: 20px auto 20px 20px;
+    display: flex;
+}
+
+.content .interface img {
+    width: 360px;
+    height: 500px;
+}
+
+.content .interface button {
+    width: 160px;
+    height: 45px;
+    background-color: #27AE60;
+    border-radius: 10px;
+    color: white;
+    margin: 35px auto;
+    font-size: large;
+    font-weight: bold;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.flex p {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.guessWord {
+    margin: 30px auto;
+}
+
+.letters {
+    margin: 0 auto;
+    display: flex;
+    width: 590px;
+    height: 65px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.letter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    margin: 5px;
+    height: 30px;
+    background-color: #9FAAB5;
+    color: #3f4146;
+    border-radius: 3px;
+}
+
+.inGame {
+    background-color: #E1ECF4;
+    color: #4387B7;
+    border-color: #92B7D1;
+}
+
+.typeWord {
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.typeWord p {
+    display: flex;
+    align-items: center;
+}
+
+.typeWord input {
+    margin: 0 9px;
+}
+
+.typeWord button {
+    width: 60px;
+    height: 30px;
+    background-color: #E1ECF4;
+    color: #4387B7;
+    border-color: #92B7D1;
+    border-radius: 5px;
+}
+
+.lost {
+    color: #FF0003;
+}
+
+.won {
+    color: #27AE60;
+}
