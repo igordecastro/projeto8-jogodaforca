@@ -86,12 +86,12 @@ export default function App() {
     return (
         <div className="content">
             <div className="interface">
-                <img src={`../../assets/forca${error}.png`} alt="Forca" />
+                <img data-identifier="game-image" src={`../../assets/forca${error}.png`} alt="Forca" />
                 <div className="flex">
-                    <button onClick={startGame}>{gameWon ? "Começar" : gameLost ? "Começar" : "Escolher Palavra"}</button>
+                    <button data-identifier="choose-word" onClick={startGame}>{gameWon ? "Começar" : gameLost ? "Começar" : "Escolher Palavra"}</button>
                     {wordArray
                         ?
-                        <p className={gameWon ? "won" : gameLost ? "lost" : ""}>{wordArray.map((w) => showLetter(w))}</p>
+                        <p data-identifier="word" className={gameWon ? "won" : gameLost ? "lost" : ""}>{wordArray.map((w) => showLetter(w))}</p>
                         : ""
                     }
                 </div>
@@ -102,24 +102,26 @@ export default function App() {
                         ?
                         alphabet.map((a, index) =>
                             <div
+                                data-identifier="letter"
                                 key={index}
                                 className={clickedLetter.includes(a) ? "letter" : "letter inGame"}
                                 onClick={() => chooseLetter(a)}>{a.toUpperCase()}
                             </div>)
                         :
-                        alphabet.map((a, index) => <div key={index} className="letter" >{a.toUpperCase()}</div>)}
+                        alphabet.map((a, index) => <div key={index} data-identifier="letter" className="letter" >{a.toUpperCase()}</div>)}
                 </div>
                 <div className="typeWord">
                     <p>Já sei a palavra!</p>
                     {playing ?
                         <input
+                            data-identifier="type-guess"
                             type="text"
                             placeholder="Digite a palavra correta"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                         />
-                        : <input type="text" disabled />}
-                    {playing ? <button onClick={() => verifyWord(input)}>Chutar</button> : <button disabled>Chutar</button>}
+                        : <input data-identifier="type-guess" type="text" disabled />}
+                    {playing ? <button data-identifier="guess-button" onClick={() => verifyWord(input)}>Chutar</button> : <button data-identifier="guess-button" disabled>Chutar</button>}
                 </div>
             </div>
         </div>
