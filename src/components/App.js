@@ -28,6 +28,7 @@ export default function App() {
         setPlaying(true);
         setGameLost(false);
         setGameWon(false);
+        setError(0);
     }
 
     function chooseLetter(chosenLetter) {
